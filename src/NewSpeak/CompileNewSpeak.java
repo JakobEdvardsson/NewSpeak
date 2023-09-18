@@ -7,6 +7,8 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class CompileNewSpeak extends NewSpeakBaseListener {
+    StringBuilder compiled = new StringBuilder();
+
     /**
      * {@inheritDoc}
      *
@@ -48,7 +50,9 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void enterDecl(NewSpeakParser.DeclContext ctx) { }
+    @Override public void enterDecl(NewSpeakParser.DeclContext ctx) {
+
+    }
     /**
      * {@inheritDoc}
      *
@@ -103,7 +107,16 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void exitUnaryExpression(NewSpeakParser.UnaryExpressionContext ctx) { }
+    @Override public void exitUnaryExpression(NewSpeakParser.UnaryExpressionContext ctx) {
+        String value = "";
+        if (ctx.ID() == null){
+            value = ctx.INT().getText();
+        }else {
+            value = ctx.ID().getText();
+        }
+        compiled.append("push ");
+        compileNewline(value);
+    }
     /**
      * {@inheritDoc}
      *
@@ -127,7 +140,9 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void exitExpr(NewSpeakParser.ExprContext ctx) { }
+    @Override public void exitExpr(NewSpeakParser.ExprContext ctx) {
+
+    }
 
     /**
      * {@inheritDoc}
@@ -153,4 +168,12 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override public void visitErrorNode(ErrorNode node) { }
+
+    private void compileNewline(String input){
+        compiled.append(input).append("\n");
+    }
+
+    public String getCompiled() {
+        return compiled.toString();
+    }
 }

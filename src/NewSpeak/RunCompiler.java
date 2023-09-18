@@ -14,7 +14,7 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Main {
+public class RunCompiler {
     public static void main(String[] args) throws IOException {
         String sourceFile;
         String outFile;
@@ -57,8 +57,9 @@ public class Main {
         walker.walk(compiler, tree);
 
         // Skriv det kompilerade programmet till en fil
+        System.out.println(compiler.getCompiled());
         try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(outFile), StandardCharsets.US_ASCII)) {
-            writer.write(compiler.getCompiledCode());
+            //writer.write(compiler.getCompiled());
         }
 
     }

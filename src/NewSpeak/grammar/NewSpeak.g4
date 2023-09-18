@@ -3,11 +3,9 @@ grammar NewSpeak;
 file: code | EOF;
 
 code
-: statement code
-| statement      // Implicitly defined terminal
+: statement ';' code
+| statement ';'      // Implicitly defined terminal
 ;
-
-
 
 statement
 : decl
@@ -47,8 +45,7 @@ unaryExpression
 print: 'versificator' expr;
 
 expr
-: ID
-| INT
+: unaryExpression
 | addExpression
 ;
 
