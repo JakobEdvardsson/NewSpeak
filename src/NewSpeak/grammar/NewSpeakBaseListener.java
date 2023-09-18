@@ -1,5 +1,5 @@
-// Generated from /home/jakobe/Documents/GitHub/Custom-Language/src/grammar/NewSpeak.g4 by ANTLR 4.13.1
-package grammar;
+// Generated from /home/jakobe/Documents/GitHub/Custom-Language/src/NewSpeak/grammar/NewSpeak.g4 by ANTLR 4.13.1
+package NewSpeak.grammar;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -77,13 +77,25 @@ public class NewSpeakBaseListener implements NewSpeakListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAgain(NewSpeakParser.AgainContext ctx) { }
+	@Override public void enterWhile(NewSpeakParser.WhileContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAgain(NewSpeakParser.AgainContext ctx) { }
+	@Override public void exitWhile(NewSpeakParser.WhileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWhilecondition(NewSpeakParser.WhileconditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhilecondition(NewSpeakParser.WhileconditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

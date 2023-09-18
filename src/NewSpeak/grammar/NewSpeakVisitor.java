@@ -1,5 +1,5 @@
-// Generated from /home/jakobe/Documents/GitHub/Custom-Language/src/grammar/NewSpeak.g4 by ANTLR 4.13.1
-package grammar;
+// Generated from /home/jakobe/Documents/GitHub/Custom-Language/src/NewSpeak/grammar/NewSpeak.g4 by ANTLR 4.13.1
+package NewSpeak.grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -41,11 +41,17 @@ public interface NewSpeakVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssign(NewSpeakParser.AssignContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link NewSpeakParser#again}.
+	 * Visit a parse tree produced by {@link NewSpeakParser#while}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAgain(NewSpeakParser.AgainContext ctx);
+	T visitWhile(NewSpeakParser.WhileContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link NewSpeakParser#whilecondition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhilecondition(NewSpeakParser.WhileconditionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link NewSpeakParser#condition}.
 	 * @param ctx the parse tree

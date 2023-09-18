@@ -1,5 +1,5 @@
-// Generated from /home/jakobe/Documents/GitHub/Custom-Language/src/grammar/NewSpeak.g4 by ANTLR 4.13.1
-package grammar;
+// Generated from /home/jakobe/Documents/GitHub/Custom-Language/src/NewSpeak/grammar/NewSpeak.g4 by ANTLR 4.13.1
+package NewSpeak.grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -58,15 +58,25 @@ public interface NewSpeakListener extends ParseTreeListener {
 	 */
 	void exitAssign(NewSpeakParser.AssignContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link NewSpeakParser#again}.
+	 * Enter a parse tree produced by {@link NewSpeakParser#while}.
 	 * @param ctx the parse tree
 	 */
-	void enterAgain(NewSpeakParser.AgainContext ctx);
+	void enterWhile(NewSpeakParser.WhileContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link NewSpeakParser#again}.
+	 * Exit a parse tree produced by {@link NewSpeakParser#while}.
 	 * @param ctx the parse tree
 	 */
-	void exitAgain(NewSpeakParser.AgainContext ctx);
+	void exitWhile(NewSpeakParser.WhileContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link NewSpeakParser#whilecondition}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhilecondition(NewSpeakParser.WhileconditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link NewSpeakParser#whilecondition}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhilecondition(NewSpeakParser.WhileconditionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link NewSpeakParser#condition}.
 	 * @param ctx the parse tree
