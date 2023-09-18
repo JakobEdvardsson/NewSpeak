@@ -1,6 +1,6 @@
 grammar NewSpeak;
 
-file:code EOF;
+file: code | EOF;
 
 code
 : statement code
@@ -22,8 +22,12 @@ decl: 'artsem' ID;
 assign: ID 'blackwhite' expr;
 
 while
-: 'again' unaryExpression condition unaryExpression code 'unagain'
+: 'again' whilecondition code 'unagain'
 ;
+
+whilecondition
+: expr* condition expr*;
+
 
 condition
 : 'greater'
@@ -33,9 +37,7 @@ condition
 ;
 
 addExpression
-: unaryExpression 'dubleplus' expr
-|
-;
+: unaryExpression 'dubleplus' expr;
 
 unaryExpression
 : ID
@@ -53,3 +55,5 @@ expr
 ID: ('a'..'z'|'A'..'Z')+ ;
 INT: ('0'..'9')+ ;
 WS: [ \n\t\r]+ -> skip;
+COMMENT: ('//' .*? '\n' | '//' .*? EOF) -> skip;
+MULTILINE: ('/*' .*? '*/') -> skip;
