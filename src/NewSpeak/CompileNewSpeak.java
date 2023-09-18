@@ -72,18 +72,7 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void enterAgain(NewSpeakParser.AgainContext ctx) { }
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override public void exitAgain(NewSpeakParser.AgainContext ctx) { }
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
+
     @Override public void enterCondition(NewSpeakParser.ConditionContext ctx) { }
     /**
      * {@inheritDoc}
