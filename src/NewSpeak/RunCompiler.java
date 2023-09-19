@@ -59,8 +59,10 @@ public class RunCompiler {
         // Skriv det kompilerade programmet till en fil
         System.out.println(compiler.getCompiled());
         try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(outFile), StandardCharsets.US_ASCII)) {
-            //writer.write(compiler.getCompiled());
+            writer.write(compiler.getCompiled());
         }
+
+        new Translator(outFile, outFile+"_translated.vm").translateAndSave();
 
     }
 }

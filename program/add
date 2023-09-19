@@ -1,17 +1,10 @@
-artsem Winston;
-artsem Julia;
-Winston blackwhite 11;
+target blackwhite 3;
+sum blackwhite 0;
+counter blackwhite 0;
 
-Julia blackwhite 1;
+again (counter ungreater target) {
+    counter blackwhite counter dubleplus 1;
+    sum blackwhite sum dubleplus counter;
+};
 
-artsem i;
-i blackwhite i;
-
-again Julia ungreater 101
-    Julia blackwhite i;
-    i blackwhite 1;
-
-unagain;
-
-
-versificator Julia;
+versificator sum;

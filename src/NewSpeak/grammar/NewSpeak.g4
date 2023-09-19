@@ -20,7 +20,7 @@ decl: 'artsem' ID;
 assign: ID 'blackwhite' expr;
 
 while
-: 'again' whilecondition code 'unagain'
+: 'again' '(' whilecondition ')' '{'code'}'
 ;
 
 whilecondition
@@ -30,23 +30,26 @@ whilecondition
 condition
 : 'greater'
 | 'ungreater'
-| 'samegreater'
-| 'sameungreater'
+| 'equals'
 ;
 
-addExpression
+add
 : unaryExpression 'dubleplus' expr;
+
+sub
+: unaryExpression 'dubleunplus' expr;
 
 unaryExpression
 : ID
 | INT
 ;
 
-print: 'versificator' expr;
+print: 'versificator' ID | 'versificator' INT;
 
 expr
 : unaryExpression
-| addExpression
+| add
+| sub
 ;
 
 ID: ('a'..'z'|'A'..'Z')+ ;

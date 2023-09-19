@@ -113,13 +113,25 @@ public class NewSpeakBaseListener implements NewSpeakListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAddExpression(NewSpeakParser.AddExpressionContext ctx) { }
+	@Override public void enterAdd(NewSpeakParser.AddContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAddExpression(NewSpeakParser.AddExpressionContext ctx) { }
+	@Override public void exitAdd(NewSpeakParser.AddContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSub(NewSpeakParser.SubContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSub(NewSpeakParser.SubContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

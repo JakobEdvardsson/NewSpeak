@@ -88,15 +88,25 @@ public interface NewSpeakListener extends ParseTreeListener {
 	 */
 	void exitCondition(NewSpeakParser.ConditionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link NewSpeakParser#addExpression}.
+	 * Enter a parse tree produced by {@link NewSpeakParser#add}.
 	 * @param ctx the parse tree
 	 */
-	void enterAddExpression(NewSpeakParser.AddExpressionContext ctx);
+	void enterAdd(NewSpeakParser.AddContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link NewSpeakParser#addExpression}.
+	 * Exit a parse tree produced by {@link NewSpeakParser#add}.
 	 * @param ctx the parse tree
 	 */
-	void exitAddExpression(NewSpeakParser.AddExpressionContext ctx);
+	void exitAdd(NewSpeakParser.AddContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link NewSpeakParser#sub}.
+	 * @param ctx the parse tree
+	 */
+	void enterSub(NewSpeakParser.SubContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link NewSpeakParser#sub}.
+	 * @param ctx the parse tree
+	 */
+	void exitSub(NewSpeakParser.SubContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link NewSpeakParser#unaryExpression}.
 	 * @param ctx the parse tree

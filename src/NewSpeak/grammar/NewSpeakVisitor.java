@@ -59,11 +59,17 @@ public interface NewSpeakVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCondition(NewSpeakParser.ConditionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link NewSpeakParser#addExpression}.
+	 * Visit a parse tree produced by {@link NewSpeakParser#add}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAddExpression(NewSpeakParser.AddExpressionContext ctx);
+	T visitAdd(NewSpeakParser.AddContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link NewSpeakParser#sub}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSub(NewSpeakParser.SubContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link NewSpeakParser#unaryExpression}.
 	 * @param ctx the parse tree

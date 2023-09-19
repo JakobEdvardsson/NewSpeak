@@ -6,8 +6,13 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.LinkedList;
+
 public class CompileNewSpeak extends NewSpeakBaseListener {
     StringBuilder compiled = new StringBuilder();
+    private int loopCounter = 0;
+    private LinkedList<Integer> loopStack = new LinkedList<>();
+
 
     /**
      * {@inheritDoc}
@@ -50,9 +55,7 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void enterDecl(NewSpeakParser.DeclContext ctx) {
-
-    }
+    @Override public void enterDecl(NewSpeakParser.DeclContext ctx) { }
     /**
      * {@inheritDoc}
      *
@@ -70,13 +73,58 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void exitAssign(NewSpeakParser.AssignContext ctx) { }
+    @Override public void exitAssign(NewSpeakParser.AssignContext ctx) {
+        compileNewline("pop "+ctx.ID().getText());
+    }
     /**
      * {@inheritDoc}
      *
      * <p>The default implementation does nothing.</p>
      */
+    @Override public void enterWhile(NewSpeakParser.WhileContext ctx) {
+        loopCounter++;
+        loopStack.push(loopCounter);
+        compileNewline("label enterLoop"+ loopCounter);
+    }
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override public void exitWhile(NewSpeakParser.WhileContext ctx) {
+        int stackIndex = loopStack.pop();
+        compileNewline("goto enterLoop" + stackIndex);
+        compileNewline("label exitLoop" + stackIndex);
+    }
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override public void enterWhilecondition(NewSpeakParser.WhileconditionContext ctx) {
+    }
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override public void exitWhilecondition(NewSpeakParser.WhileconditionContext ctx) {
+        String operation = "";
+        switch (ctx.condition().getText()){
+            case "greater" -> operation="gt";
+            case "ungreater" -> operation="lt";
+            case "equals" -> operation="eq";
+        }
+        compileNewline(operation);
+        compileNewline("not");
+        compileNewline("if-goto " + "exitLoop" + loopCounter);
 
+    }
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
     @Override public void enterCondition(NewSpeakParser.ConditionContext ctx) { }
     /**
      * {@inheritDoc}
@@ -89,13 +137,29 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void enterAddExpression(NewSpeakParser.AddExpressionContext ctx) { }
+    @Override public void enterAdd(NewSpeakParser.AddContext ctx) { }
     /**
      * {@inheritDoc}
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void exitAddExpression(NewSpeakParser.AddExpressionContext ctx) { }
+    @Override public void exitAdd(NewSpeakParser.AddContext ctx) {
+        compileNewline("add");
+    }
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override public void enterSub(NewSpeakParser.SubContext ctx) { }
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override public void exitSub(NewSpeakParser.SubContext ctx) {
+        compileNewline("sub");
+    }
     /**
      * {@inheritDoc}
      *
@@ -117,18 +181,22 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
         compiled.append("push ");
         compileNewline(value);
     }
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
     @Override public void enterPrint(NewSpeakParser.PrintContext ctx) { }
     /**
      * {@inheritDoc}
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void exitPrint(NewSpeakParser.PrintContext ctx) { }
+    @Override public void exitPrint(NewSpeakParser.PrintContext ctx) {
+        String value = "";
+
+        if (ctx.ID() == null){
+            value = ctx.INT().getText();
+        }else {
+            value = ctx.ID().getText();
+        }
+        compileNewline("print " + value);
+    }
     /**
      * {@inheritDoc}
      *
@@ -140,9 +208,7 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      *
      * <p>The default implementation does nothing.</p>
      */
-    @Override public void exitExpr(NewSpeakParser.ExprContext ctx) {
-
-    }
+    @Override public void exitExpr(NewSpeakParser.ExprContext ctx) { }
 
     /**
      * {@inheritDoc}
@@ -168,6 +234,8 @@ public class CompileNewSpeak extends NewSpeakBaseListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override public void visitErrorNode(ErrorNode node) { }
+
+
 
     private void compileNewline(String input){
         compiled.append(input).append("\n");
