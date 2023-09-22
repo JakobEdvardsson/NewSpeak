@@ -1,0 +1,20 @@
+push 0
+pop Julia
+label enterLoop1
+push Julia
+push 101
+lt
+not
+if-goto exitLoop1
+label enterLoop2
+push Julia
+push 101
+lt
+not
+if-goto exitLoop2
+push Julia
+print Julia
+goto enterLoop2
+label exitLoop2
+goto enterLoop1
+label exitLoop1
